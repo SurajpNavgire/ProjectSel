@@ -1,0 +1,35 @@
+System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+		
+		  WebDriver driver = new ChromeDriver();
+		
+		  driver.manage().window().maximize();
+		
+		  driver.get("https://demo.actitime.com/login.do");
+	
+		  driver.findElement(By.id("keepLoggedInLabel")).click();
+		
+		  WebElement element = driver.findElement(By.id("keepLoggedInCheckBox"));
+		  
+		  if (element.isSelected()) {
+			System.out.println("True:- Targeted Element Is Selected✅");
+			
+			}
+		  else {
+			System.out.println("False:- Targeted Element Is Not-Selected❌");
+		  }
+		  Thread.sleep(2000);
+		
+		  element.click();
+      
+		  Thread.sleep(2000);
+      
+		  if (element.isSelected()) {
+			System.out.println("True:- Targeted Element Is Selected✅");
+			
+			}
+		  else {
+			System.out.println("False:- Targeted Element Is Not-Selected❌");
+		  }
+	}
+	
+	
