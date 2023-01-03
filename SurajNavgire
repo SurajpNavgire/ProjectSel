@@ -1,0 +1,36 @@
+package Carnage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SurajNavgire {
+		
+		public static void main(String[] args) {
+			
+			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+			
+			WebDriver driver = new ChromeDriver();
+			
+			driver.manage().window().maximize();
+			
+			driver.get("https://ditaxpresso.com/#/contactus");
+			
+			driver.findElement(By.className("input[name='First Name']")).sendKeys("Suraj");
+			
+			driver.findElement(By.className("input[name='Last Name']")).sendKeys("Navgire");
+			
+			driver.findElement(By.className("input[name='Phone']")).sendKeys("7020319452");
+			
+			driver.findElement(By.className("input[name='Email']")).sendKeys("surajnavgire2015@gmail.com");
+			
+			driver.findElement(By.className("input[name='Title']")).sendKeys("Nature");
+			
+			driver.findElement(By.className("textarea[name='Description']")).sendKeys("We are Building A Project That can change the World So Wait For it.");
+			
+			driver.findElement(By.id("formsubmit")).click();
+			
+			
+	}
+
+}
