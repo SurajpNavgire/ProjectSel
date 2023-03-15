@@ -1,0 +1,29 @@
+from selenium import webdriver
+import json
+
+options = webdriver.ChromeOptions()
+options.add_argument('--proxy-server=127.0.0.1:8080') # Change the proxy address accordingly
+driver = webdriver.Chrome(options=options)
+driver.get('https://exactspace.co/')
+result = json.loads(driver.execute_script("return window.performance.getEntries();")[0]['toJSON']())
+with open('result.har', 'w') as f:
+    json.dump(result, f)
+with open('result.har', 'r') as f:
+    har_file = json.load(f)
+    entries = har_file['log']['entries']
+    total_count = len(entries)
+    status_2xx_count = 0
+    status_4xx_count = 0
+    status_5xx_count = 0
+    for entry in entries:
+        status = entry['response']['status']
+        if status >= 200 and status < 300:
+            status_2xx_count += 1
+        elif status >= 400 and status < 500:
+            status_4xx_count += 1
+        elif status >= 500 and status < 600:
+            status_5xx_count += 1
+    print('Total status code count:', total_count)
+    print('Total count for 2XX status codes:', status_2xx_count)
+    print('Total count for 4XX status codes:', status_4xx_count)
+    print('Total count for 5XX status codes:', status_5xx_count)
